@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вита-Релакс - Студия массажа</title>
+    <style>
+        /* Стили для сайта */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #6a89cc 0%, #4a69bd 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e0e0e0;
+        }
+
+        /* Главный баннер */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4a69bd;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #3c5aa8;
+        }
+
+        /* Секции */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #4a69bd;
+        }
+
+        /* Услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 1.5rem;
+        }
+
+        .service-content h3 {
+            margin-bottom: 1rem;
+            color: #4a69bd;
+        }
+
+        /* Прайс */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .price-table th, .price-table td {
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .price-table th {
+            background: #4a69bd;
+            color: white;
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Форма */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Футер */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <nav class="container">
+            <div class="logo">Новая жизнь</div>
+            <ul class="nav-links">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#prices">Цены</a></li>
+                <li><a href="#contact">Запись</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Главный баннер -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ваше тело заслужило отдых</h1>
+            <p>Профессиональный массаж для снятия стресса, расслабления и восстановления вашего тела</p>
+            <a href="#contact" class="btn">Записаться онлайн</a>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="container">
+        <h2 class="section-title">Наши услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                <div class="service-content">
+                    <h3>Классический массаж</h3>
+                    <p>Общеукрепляющий расслабляющий массаж всего тела. Идеально подходит для снятия стресса и общего тонуса.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544164357-0f6366ac54f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                <div class="service-content">
+                    <h3>Лечебный массаж спины</h3>
+                    <p>Глубокое воздействие на проблемные зоны. Эффективно при болях в спине, шее и пояснице.</p>
+                </div>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544164517-0c2c8d11acaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+                <div class="service-content">
+                    <h3>Массаж с тэрмо одеялом</h3>
+                    <p>Интенсивный массаж для женщин . Ускоряет и повышает метаболизм и уберает целюлит .</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Цены -->
+    <section id="prices" style="background: #f0f0f0;">
+        <div class="container">
+            <h2 class="section-title">Наши цены</h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>Услуга</th>
+                        <th>Продолжительность</th>
+                        <th>Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Классический массаж</td>
+                        <td>50 минут</td>
+                        <td>1 800 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Расслабляющий массаж</td>
+                        <td>50 минут</td>
+                        <td>1 500 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Лечебный массаж спины</td>
+                        <td>55 минут</td>
+                        <td>2 000 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Спа с термоодеялом </td>
+                        <td>1 час</td>
+                        <td>2 500 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Антицеллюлитный массаж</td>
+                        <td>50 минут</td>
+                        <td>2 000 руб.</td>
+                    </tr>
+                    <tr>
+                        <td>Массаж ног-рук</td>
+                        <td>40 минут</td>
+                        <td>700 руб.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Форма записи -->
+    <section id="contact" class="container">
+        <h2 class="section-title">Онлайн запись</h2>
+        <div class="contact-form">
+            <form action="https://formspree.io/f/xgvpgejy" method="POST" id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Выберите услугу</label>
+                    <select id="service" name="service" required>
+                        <option value="">-- Выберите услугу --</option>
+                        <option value="classic">Классический массаж</option>
+                        <option value="relax">Расслабляющий массаж</option>
+                        <option value="medical">Лечебный массаж спины</option>
+                        <option value="sport">Спа с тэрмо одеялом</option>
+                        <option value="anti-cellulite">Антицеллюлитный массаж</option>
+                        <option value="legs">Массаж ног-рук</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">Желаемая дата</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Дополнительная информация </label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Отправить заявку</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Новая жизнь . Студия профессионального массажа</p>
+            <p>г. Челябинск, ул. 3-я Арзамаская д 11,  | +7 (951) 483-13-45</p>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка формы
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            // Форма теперь будет отправляться на Formspree
+            // Можно оставить уведомление для пользователя
+            const name = document.getElementById('name').value;
+            alert(`Спасибо, ${name}! Ваша заявка отправляется. Мы свяжемся с вами в ближайшее время для подтверждения записи.`);
+            
+            // Форма отправится автоматически благодаря action и method
+        });
+
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
